@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1694974617 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao e\questao e\main.c
+	"companhiaaerea.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1694978180 c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao e\questao e\companhiaaerea.h
+
+1694979662 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao e\questao e\tadaux.c
+	"companhiaaerea.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
