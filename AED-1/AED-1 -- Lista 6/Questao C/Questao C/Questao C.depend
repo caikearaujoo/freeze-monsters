@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1693762512 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 6\questao c\questao c\tadaux.c
+	"manipulamatriz.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1693762239 c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 6\questao c\questao c\manipulamatriz.h
+
+1693762225 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 6\questao c\questao c\main.c
+	"manipulamatriz.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
