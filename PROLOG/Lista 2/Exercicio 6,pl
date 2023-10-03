@@ -1,0 +1,7 @@
+sucessor(X,Y):- X is Y+1.
+
+par(X):- X mod 2 =:= 0.
+
+triplo(X,Y):- X is 3*Y.
+
+entre(X,A,B):- X >= A, X =< B.
