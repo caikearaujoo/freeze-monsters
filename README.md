@@ -1,2 +1,2 @@
 # UFU
-Códigos realizados nas disciplinas do curso de ciência da computação na universidade federal de uberlândia.
+Códigos realizados nos laboratórios das disciplinas do curso de Ciência da Computação na Universidade Federal de Uberlândia.
