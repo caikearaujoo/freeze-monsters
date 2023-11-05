@@ -8,9 +8,12 @@ estrada(6, c, f).
 estrada(7, d, f).
 estrada(8, e, f).
 
-% rota(A, B, R).
 rota(A, B, estrada(R, A, B)) :-
   estrada(R, A, B).
+
+rota(A, B, [estrada(R, A, C) | Cauda]) :-
+  estrada(R, A, C),
+  rota(C, B, Cauda).
 
 % rotac(R, A).
 rotac(estrada(R, X, A), A) :-
