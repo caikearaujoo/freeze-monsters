@@ -9,7 +9,7 @@ d(7,'sete').
 d(8,'oito').
 d(9,'nove').
 
-txt([D],[P]):- d(D, P).
+txt([],[]).
 
 txt([D|Y],[P|Z]):-
     d(D,P),
