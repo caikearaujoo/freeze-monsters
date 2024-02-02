@@ -4,3 +4,8 @@ quoci n p
   | n == 0 = 0
   | n > p = p + quoci (n - p*p) p
   | otherwise = 0
+
+resto :: Int ->Int -> Int
+resto p q
+ |p<q = p
+ |otherwise = resto(p-q) q
