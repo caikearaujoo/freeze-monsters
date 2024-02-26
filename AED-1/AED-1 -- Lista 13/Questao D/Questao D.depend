@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1698616379 source:c:\users\caike\onedrive\Área de trabalho\aed-1 -- lista 13\questao d\main.c
+	"pilha.h"
+	<stdio.h>
+	<stdlib.h>
+
+1698616940 c:\users\caike\onedrive\Área de trabalho\aed-1 -- lista 13\questao d\pilha.h
+
+1698617234 source:c:\users\caike\onedrive\Área de trabalho\aed-1 -- lista 13\questao d\pilha.c
+	"pilha.h"
+	<stdio.h>
+	<stdlib.h>
+
