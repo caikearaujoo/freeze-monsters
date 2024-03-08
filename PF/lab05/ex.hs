@@ -5,7 +5,7 @@ extraiPrimeiro:: [(a,b)]->[a]
 extraiPrimeiro lista = map fst lista
 
 maiusculas:: String -> String
-maiuscula str = map toUpper str
+maiusculas str = map toUpper str
 
 dobros::Num a => [a] ->[a]
 dobros lista = map (*2) lista
