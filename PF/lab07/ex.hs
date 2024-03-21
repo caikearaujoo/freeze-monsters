@@ -39,5 +39,5 @@ somaCoord:: Ponto->Ponto->Ponto
 somaCoord (xa, ya) (xb, yb) = (xa+xb, ya+yb)
 
 
-somaCoord2:: Coordenada->Coordenada->(Float, Float)
-somaCoord2 (Coord xa ya) (Coord xb yb) = (xa+xb, ya+yb)
+somaCoord2:: Coord->Coord->Coord
+somaCoord2 (Coord x1 y1) (Coord x2 y2) = Coord (x1+x2) (y1+y2)
