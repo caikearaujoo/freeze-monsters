@@ -2,27 +2,34 @@ package estudosp3;
 import java.util.ArrayList;
 
 public class GestaoContatos {
-	ArrayList<Contato> lista = new ArrayList<Contato>();
+	private ArrayList<Contato> lista = new ArrayList<Contato>();
 	
 	public void adicionaContato(Contato ctt) {
 		lista.add(ctt);
 	}
 	
-	public void eliminaContato(String nome) {
-		for(Contato aux : lista){
-		if(aux.getNome() == nome) {
-			lista.remove(aux);
-			System.out.println("\nContato removido com sucesso");
-			return;
-		}
-		else System.out.println("\nContato não encontrado");
-		}
-	}
+	 public void eliminaContato(String nome) {
+		 
+		 Contato contatoParaRemover = null;
+	     for (Contato aux : lista) {
+	    	 if (aux.getNome().equals(nome)) {
+	    		 contatoParaRemover = aux;
+	             break;
+	          }
+	    }
+	     
+	     if (contatoParaRemover != null) {
+	    	 lista.remove(contatoParaRemover);
+	         System.out.println("\nContato removido com sucesso");
+	        } else {
+	        	System.out.println("\nContato não encontrado");
+	        }
+	    }
 	
 	
 	public void listaContatos() {
 		for(Contato aux :lista) {
-			aux.toString();
+			System.out.println(aux.toString());
 		}
 	}
 	
