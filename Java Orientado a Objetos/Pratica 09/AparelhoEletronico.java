@@ -14,7 +14,8 @@ public class AparelhoEletronico {
 	public String getFabricante() {
 		return fabricante;
 	}
-	public void setFabricante(String fabricante) {
+	public void setFabricante(String fabricante) throws ExcecaoDadoInvalido{
+		if(fabricante == null || fabricante.isEmpty()) throw new ExcecaoDadoInvalido("Fabricante nao pode ser vazio");
 		this.fabricante = fabricante;
 	}
 	public String getSistemaCor() {
