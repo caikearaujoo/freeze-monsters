@@ -17,7 +17,7 @@ public class Main {
         dados.listaContatos();
 
         // Remove um contato
-        dados.eliminaContato("Joao");
+        dados.eliminaContato("João");
 
         // Lista os contatos novamente
         System.out.println("\nLista de Contatos após a remoção:");
