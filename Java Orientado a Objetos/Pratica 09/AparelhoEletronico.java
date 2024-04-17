@@ -16,7 +16,7 @@ public class AparelhoEletronico {
 	}
 	public void setFabricante(String fabricante) throws ExcecaoDadoInvalido{
 		if(fabricante == null || fabricante.isEmpty()) throw new ExcecaoDadoInvalido("Fabricante nao pode ser vazio");
-		this.fabricante = fabricante;
+		else this.fabricante = fabricante;
 	}
 	public String getSistemaCor() {
 		return sistemaCor;
