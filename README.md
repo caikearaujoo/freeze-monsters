@@ -1,2 +1,2 @@
 # UFU
-Códigos realizados nos laboratórios das disciplinas do curso de Ciência da Computação na Universidade Federal de Uberlândia.
+All my projects for each subject of my Bachelor's Computer Science degree at UFU.
