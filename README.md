@@ -1,6 +1,6 @@
 # 👨‍🎓 Projetos desenvolvidos na UFU
 
-👾Repositório destinado a armazenar projetos e exercícios realizados por mim no curso de Ciência da Computação na Universidade Federal de Uberlândia, onde tenho aprendido diversas linguagens e paradigmas de programação, como C, Java, Assembly, Haskell, Prolog, entre outros, como Logisim em sistemas digitais.
+👾Repositório destinado a armazenar projetos e exercícios realizados por mim no curso de Ciência da Computação na Universidade Federal de Uberlândia, onde tenho aprendido diversas linguagens e paradigmas de programação, como PostGres SQL, C, Java, Assembly, Haskell, Prolog, entre outros, como Logisim em sistemas digitais.
 
 
 ### 📚 Tecnologias
