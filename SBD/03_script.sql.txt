@@ -1,0 +1,144 @@
+Caike Cesar Mota de Araújo - 12221bcc030
+Felipe Santos Silva - 12221BCC042
+Diego de Miranda da Silva - 12311BCC0603
+
+
+
+a) SELECT * FROM CURSO;
+
+2142	"ENGENHARIA CIVIL              "	1500
+2143	"CIENCIA DA COMPUTACAO         "	2000
+2144	"DIREITO                       "	1750
+2145	"PEDAGOGIA                     "	1500
+2146	"ODONTOLOGIA                   "	1600
+
+b) SELECT Nome, Telefone FROM Aluno WHERE Cidade = 'SAO CARLOS - SP' ORDER BY Nome DESC;
+
+"SIMONE CRISTINA LIMA                                                  "	"(017)273-9865            "
+"MARCOS JOAO CASANOVA                                                  "	"(017)274-9874            "
+"JOSE PAULO FIGUEIRA                                                   "	"(017)274-9873            "
+"JOAO BENEDITO SCAPIN                                                  "	"(017)273-8974            "
+"EDVALDO CARLOS SILVA                                                  "	"(017)276-9999            "
+
+c) SELECT Nome FROM Professor WHERE Admissao < '01-01-1993'
+
+"ABGAIR SIMON FERREIRA                                                 "
+
+d) SELECT Nome FROM Aluno WHERE Nome LIKE 'J%'
+
+"JOAO BENEDITO SCAPIN                                                  "
+"JOSE PAULO FIGUEIRA                                                   "
+
+e) SELECT Disciplina.Nome FROM DisciplinaCurso, Curso, Disciplina 
+WHERE Curso.Nome = 'CIENCIA DA COMPUTACAO'
+AND DisciplinaCurso.NumCurso = Curso.NumCurso
+AND Disciplina.NumDisp = DisciplinaCurso.NumDisp;
+
+"BANCO DE DADOS                "
+"ESTRUTURA DE DADOS            "
+"CALCULO NUMERICO              "
+"ENGENHARIA DE SOFTWARE        "
+
+f) SELECT Curso.Nome FROM DisciplinaCurso, Curso, Disciplina 
+WHERE Disciplina.Nome = 'CALCULO NUMERICO'
+AND Disciplina.NumDisp = DisciplinaCurso.NumDisp
+AND DisciplinaCurso.NumCurso = Curso.NumCurso
+
+"CIENCIA DA COMPUTACAO         "
+"ENGENHARIA CIVIL              "
+
+g) SELECT Disciplina.Nome FROM Aluno, Disciplina, Aula
+WHERE Aula.Semestre = '01/1998'
+AND Aluno.Nome = 'MARCOS JOAO CASANOVA'
+AND Aula.NumAluno = Aluno.NumAluno
+AND Aula.NumDisp = Disciplina.NumDisp;
+
+"BANCO DE DADOS                "
+"ESTRUTURA DE DADOS            "
+"CALCULO NUMERICO              "
+"ENGENHARIA DE SOFTWARE        "
+
+h) 
+SELECT Disciplina.Nome FROM Aluno, Disciplina, Aula
+WHERE Aula.Nota < 7
+AND Aluno.Nome = 'AILTON CASTRO'
+AND Aula.NumAluno = Aluno.NumAluno
+AND Aula.NumDisp = Disciplina.NumDisp;
+
+"CALCULO NUMERICO              "
+
+I) SELECT Aluno.Nome FROM Aluno, Disciplina, Aula
+WHERE Aula.Nota < 7
+AND Disciplina.Nome = 'CALCULO NUMERICO'
+AND Aula.Semestre = '01/1998'
+AND Aula.NumAluno = Aluno.NumAluno
+AND Aula.NumDisp = Disciplina.NumDisp;
+
+"MARCOS JOAO CASANOVA                                                  "
+"AILTON CASTRO                                                         "
+
+J) 
+SELECT Disciplina.Nome FROM Disciplina, Aula, Professor
+WHERE Professor.Nome = 'RAMON TRAVANTI'
+AND Aula.NumFunc = Professor.NumFunc
+AND Aula.NumDisp = Disciplina.NumDisp;
+
+"DIREITO PENAL                 "
+"DIREITO PENAL                 "
+"DIREITO TRIBUTARIO            "
+
+K) SELECT Professor.Nome FROM Disciplina, Aula, Professor
+WHERE Disciplina.Nome = 'BANCO DE DADOS'
+AND Aula.NumDisp = Disciplina.NumDisp
+AND Aula.NumFunc = Professor.NumFunc
+
+"ABGAIR SIMON FERREIRA                                                 "
+"ABGAIR SIMON FERREIRA                                                 "
+
+L) SELECT Disciplina.Nome,
+       Professor.Nome,
+       Aluno.Nome
+FROM Aluno, Disciplina, Professor, Aula
+WHERE Aula.Semestre = '01/1998'
+  AND Aula.NumAluno = Aluno.NumAluno
+  AND Aula.NumDisp = Disciplina.NumDisp
+  AND Aula.NumFunc = Professor.NumFunc
+ORDER BY Disciplina.Nome, Aluno.Nome
+
+"BANCO DE DADOS                "	"ABGAIR SIMON FERREIRA                                                 "	"EDVALDO CARLOS SILVA                                                  "
+"BANCO DE DADOS                "	"ABGAIR SIMON FERREIRA                                                 "	"MARCOS JOAO CASANOVA                                                  "
+"CALCULO NUMERICO              "	"MARCOS SALVADOR                                                       "	"AILTON CASTRO                                                         "
+"CALCULO NUMERICO              "	"MARCOS SALVADOR                                                       "	"EDVALDO CARLOS SILVA                                                  "
+"CALCULO NUMERICO              "	"MARCOS SALVADOR                                                       "	"JOAO BENEDITO SCAPIN                                                  "
+"CALCULO NUMERICO              "	"MARCOS SALVADOR                                                       "	"MARCOS JOAO CASANOVA                                                  "
+"DIREITO PENAL                 "	"RAMON TRAVANTI                                                        "	"SIMONE CRISTINA LIMA                                                  "
+"DIREITO TRIBUTARIO            "	"RAMON TRAVANTI                                                        "	"SIMONE CRISTINA LIMA                                                  "
+"ENGENHARIA DE SOFTWARE        "	"CINTIA FALCAO                                                         "	"AILTON CASTRO                                                         "
+"ENGENHARIA DE SOFTWARE        "	"CINTIA FALCAO                                                         "	"EDVALDO CARLOS SILVA                                                  "
+"ENGENHARIA DE SOFTWARE        "	"CINTIA FALCAO                                                         "	"JOAO BENEDITO SCAPIN                                                  "
+"ENGENHARIA DE SOFTWARE        "	"CINTIA FALCAO                                                         "	"MARCOS JOAO CASANOVA                                                  "
+"ESTRUTURA DE DADOS            "	"ABGAIR SIMON FERREIRA                                                 "	"EDVALDO CARLOS SILVA                                                  "
+"ESTRUTURA DE DADOS            "	"ABGAIR SIMON FERREIRA                                                 "	"MARCOS JOAO CASANOVA                                                  "
+"PSICOLOGIA INFANTIL           "	"GUSTAVO GOLVEIA NETTO                                                 "	"CAROL ANTONIA SILVEIRA                                                "
+
+M)  SELECT Aluno.Nome, Disciplina.Nome, Aula.Nota
+FROM Aluno, Disciplina, Aula, Curso, DisciplinaCurso
+WHERE Aula.Semestre = '01/1998'
+	AND Curso.Nome = 'CIENCIA DA COMPUTACAO'
+    AND Aula.NumAluno = Aluno.NumAluno
+    AND Aula.NumDisp = Disciplina.NumDisp
+    AND DisciplinaCurso.NumDisp = Disciplina.NumDisp
+    AND DisciplinaCurso.NumCurso = Curso.NumCurso
+
+"MARCOS JOAO CASANOVA                                                  "	"BANCO DE DADOS                "	7.00
+"EDVALDO CARLOS SILVA                                                  "	"BANCO DE DADOS                "	8.50
+"MARCOS JOAO CASANOVA                                                  "	"ESTRUTURA DE DADOS            "	8.00
+"EDVALDO CARLOS SILVA                                                  "	"ESTRUTURA DE DADOS            "	6.00
+"AILTON CASTRO                                                         "	"CALCULO NUMERICO              "	3.50
+"MARCOS JOAO CASANOVA                                                  "	"CALCULO NUMERICO              "	6.50
+"JOAO BENEDITO SCAPIN                                                  "	"CALCULO NUMERICO              "	7.00
+"EDVALDO CARLOS SILVA                                                  "	"CALCULO NUMERICO              "	8.00
+"AILTON CASTRO                                                         "	"ENGENHARIA DE SOFTWARE        "	8.50
+"MARCOS JOAO CASANOVA                                                  "	"ENGENHARIA DE SOFTWARE        "	9.50
+"JOAO BENEDITO SCAPIN                                                  "	"ENGENHARIA DE SOFTWARE        "	5.50
+"EDVALDO CARLOS SILVA                                                  "	"ENGENHARIA DE SOFTWARE        "	10.00
