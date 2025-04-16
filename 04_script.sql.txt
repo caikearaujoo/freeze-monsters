@@ -1,0 +1,147 @@
+Caike Cesar Mota de Araújo - 12221bcc030
+
+a)
+SELECT MIN(Aula.nota) AS Menor, MAX(Aula.nota) AS Maior
+FROM Aula
+WHERE NumDisp = (
+SELECT NumDisp
+FROM Disciplina
+WHERE Nome = 'CALCULO NUMERICO'
+)
+AND Semestre = '01/1998'
+
+3.50	8.00
+
+b) SELECT Aluno.Nome, MAX(Aula.nota) AS MaiorNota
+FROM Aluno
+INNER JOIN Aula ON Aluno.NumAluno = Aula.NumAluno
+WHERE Aula.NumDisp = (
+SELECT NumDisp
+FROM Disciplina
+WHERE Nome = 'ENGENHARIA DE SOFTWARE'
+)
+AND Aula.Semestre = '01/1998'
+GROUP BY Aluno.nome
+
+"AILTON CASTRO                                                         "	8.50
+"EDVALDO CARLOS SILVA                                                  "	10.00
+"JOAO BENEDITO SCAPIN                                                  "	5.50
+"MARCOS JOAO CASANOVA                                                  "	9.50
+
+c) SELECT Professor.Nome, AVG(Aula.nota) AS MediaNota
+FROM Professor
+INNER JOIN Aula ON Professor.NumFunc = Aula.NumFunc
+WHERE Professor.Nome = 'MARCOS SALVADOR'
+GROUP BY Professor.nome
+
+"MARCOS SALVADOR                                                       "	7.1666666666666667
+
+d) SELECT A.Nome AS NomeAluno, D.Nome AS NomeDisciplina, AU.Nota
+FROM Aula AU
+JOIN Aluno A ON AU.NumAluno = A.NumAluno
+JOIN Disciplina D ON AU.NumDisp = D.NumDisp
+WHERE AU.Nota BETWEEN 5.0 AND 7.0
+ORDER BY D.Nome DESC;
+
+"EDVALDO CARLOS SILVA                                                  "	"ESTRUTURA DE DADOS            "	6.00
+"EDVALDO CARLOS SILVA                                                  "	"ESTRUTURA DE DADOS            "	7.00
+"JOAO BENEDITO SCAPIN                                                  "	"ENGENHARIA DE SOFTWARE        "	5.50
+"MARCOS JOAO CASANOVA                                                  "	"CALCULO NUMERICO              "	6.50
+"JOAO BENEDITO SCAPIN                                                  "	"CALCULO NUMERICO              "	7.00
+"MARCOS JOAO CASANOVA                                                  "	"BANCO DE DADOS                "	7.00
+
+e) SELECT Professor.Nome, COUNT(Aula.NumFunc)
+FROM Aula 
+JOIN Professor ON Aula.NumFunc = Professor.NumFunc
+WHERE Professor.Nome LIKE 'ABGAIR %'
+AND Aula.Semestre = '01/1998'
+GROUP BY Professor.nome
+
+"ABGAIR SIMON FERREIRA                                                 "	4
+
+F) SELECT AVG(Aula.Nota), 	COUNT (Aula.NumAluno)
+FROM Aula
+JOIN Aluno ON Aula.NumAluno = Aluno.NumAluno
+WHERE Aluno.Nome = 'EDVALDO CARLOS SILVA'
+
+7.9000000000000000	5
+
+G) SELECT Disciplina.Nome, AVG(Aula.Nota) AS MediaNota
+FROM Aula
+JOIN Disciplina ON Aula.NumDisp = Disciplina.NumDisp
+WHERE Aula.Semestre = '01/1998'
+GROUP BY Disciplina.Nome
+ORDER BY Disciplina.Nome DESC;
+
+"PSICOLOGIA INFANTIL           "	7.5000000000000000
+"ESTRUTURA DE DADOS            "	7.0000000000000000
+"ENGENHARIA DE SOFTWARE        "	8.3750000000000000
+"DIREITO TRIBUTARIO            "	9.0000000000000000
+"DIREITO PENAL                 "	4.5000000000000000
+"CALCULO NUMERICO              "	6.2500000000000000
+"BANCO DE DADOS                "	7.7500000000000000
+
+H) SELECT Professor.Nome, AVG(Aula.Nota)
+FROM Aula
+JOIN Professor ON Aula.NumFunc = Professor.NumFunc
+WHERE Aula.Semestre = '01/1998'
+GROUP BY Professor.Nome
+
+"ABGAIR SIMON FERREIRA                                                 "	7.3750000000000000
+"CINTIA FALCAO                                                         "	8.3750000000000000
+"GUSTAVO GOLVEIA NETTO                                                 "	7.5000000000000000
+"MARCOS SALVADOR                                                       "	6.2500000000000000
+"RAMON TRAVANTI                                                        "	6.7500000000000000
+
+I) SELECT Disciplina.Nome, AVG(Aula.Nota)
+FROM Aula
+JOIN Disciplina ON Aula.NumDisp = Disciplina.NumDisp
+JOIN DisciplinaCurso ON DisciplinaCurso.NumDisp = Disciplina.NumDisp
+JOIN Curso ON DisciplinaCurso.NumCurso = Curso.NumCurso
+WHERE Curso.Nome = 'CIENCIA DA COMPUTACAO'
+AND Aula.Semestre = '01/1998'
+GROUP BY Disciplina.Nome
+
+"BANCO DE DADOS                "	7.7500000000000000
+"CALCULO NUMERICO              "	6.2500000000000000
+"ENGENHARIA DE SOFTWARE        "	8.3750000000000000
+"ESTRUTURA DE DADOS            "	7.000000000000000
+
+J) SELECT SUM(Disciplina.QuantCreditos)
+FROM Aula
+JOIN Disciplina ON Aula.NumDisp = Disciplina.NumDisp
+JOIN Aluno ON Aula.NumAluno = Aluno.NumAluno
+WHERE Aluno.Nome = 'EDVALDO CARLOS SILVA'
+AND Aula.Nota >= 6.0
+
+147
+
+K) SELECT Aluno.Nome, SUM(Disciplina.QuantCreditos)
+FROM Aula
+JOIN Aluno ON Aula.NumAluno = Aluno.NumAluno
+JOIN Disciplina ON Aula.NumDisp = Disciplina.NumDisp
+WHERE Aula.Nota >= 6.0
+GROUP BY Aluno.Nome
+HAVING SUM(Disciplina.QuantCreditos) >= 70
+
+"EDVALDO CARLOS SILVA                                                  "	147
+"MARCOS JOAO CASANOVA                                                  "	147
+
+L) SELECT Aluno.Nome AS Aluno, Disciplina.Nome AS Disciplina, Professor.Nome AS Professor
+FROM Aula
+JOIN Aluno ON Aula.NumAluno = Aluno.NumAluno
+JOIN Disciplina ON Aula.NumDisp = Disciplina.NumDisp
+JOIN DisciplinaCurso ON Disciplina.NumDisp = DisciplinaCurso.NumDisp
+JOIN Curso ON DisciplinaCurso.NumCurso = Curso.NumCurso
+JOIN Professor ON Aula.NumFunc = Professor.NumFunc
+WHERE Curso.Nome = 'CIENCIA DA COMPUTACAO'
+AND Aula.Nota >= 8.0
+AND Aula.Semestre = '01/1998'
+GROUP BY Aluno.Nome, Disciplina.Nome, Professor.Nome
+
+"AILTON CASTRO                                                         "	"ENGENHARIA DE SOFTWARE        "	"CINTIA FALCAO                                                         "
+"EDVALDO CARLOS SILVA                                                  "	"BANCO DE DADOS                "	"ABGAIR SIMON FERREIRA                                                 "
+"EDVALDO CARLOS SILVA                                                  "	"CALCULO NUMERICO              "	"MARCOS SALVADOR                                                       "
+"EDVALDO CARLOS SILVA                                                  "	"ENGENHARIA DE SOFTWARE        "	"CINTIA FALCAO                                                         "
+"MARCOS JOAO CASANOVA                                                  "	"ENGENHARIA DE SOFTWARE        "	"CINTIA FALCAO                                                         "
+"MARCOS JOAO CASANOVA                                                  "	"ESTRUTURA DE DADOS            "	"ABGAIR SIMON FERREIRA                                                 "

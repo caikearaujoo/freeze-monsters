@@ -1,0 +1,144 @@
+﻿NOME: CAIKE CESAR MOTA DE ARAUJO 12221BCC030
+FELIPE SANTOS SILVA 12221bcc042
+1) Usando o BD criado na atividade anterior, especificar consultas para as seguintes pesquisas:  
+ 
+a) Qual o maior e o menor valor de bem dos candidatos do estado de Minas Gerais. 
+SET search_path TO 'eleicoes_2024'
+
+
+SELECT c.SG_UF, c.NM_CANDIDATO, MAX(bc.VR_BEM_CANDIDATO), MIN(bc.VR_BEM_CANDIDATO)
+FROM BEM_CANDIDATO bc, CANDIDATO c
+WHERE c.SQ_CANDIDATO = bc.SQ_CANDIDATO
+AND c.SG_UF = 'MG'
+GROUP BY c.NM_CANDIDATO, c.SG_UF
+ 
+b) Qual o nome, o número do partido, o estado e a cidade do candidato que possui o maior valor de bem. Deve retornar também o valor do bem.  
+SELECT c.NM_CANDIDATO, c.NR_PARTIDO, c.SG_UF, c.NM_UE, 
+       (SELECT MAX(VR_BEM_CANDIDATO) FROM BEM_CANDIDATO) AS maior_valor_bem
+FROM CANDIDATO c
+WHERE c.SQ_CANDIDATO = (
+    SELECT SQ_CANDIDATO
+    FROM BEM_CANDIDATO
+    ORDER BY VR_BEM_CANDIDATO DESC
+    LIMIT 1
+);
+
+
+
+
+ 
+
+
+
+
+
+
+c) Qual a média dos valores dos bens do candidato 'JOSE LUIZ DATENA'. 
+SELECT AVG (VR_BEM_CANDIDATO)
+FROM BEM_CANDIDATO bm, CANDIDATO c
+WHERE C.NM_CANDIDATO = 'JOSE LUIZ DATENA'
+AND bm.SQ_CANDIDATO = c.SQ_CANDIDATO
+
+
+ 
+d) Quantos candidatos ao cargo de vereador cada estado possui. Deve retornar o estado e a quantidade considerando a ordenação em ordem alfabética por estado.  
+SELECT c.SG_UF, count(c.NM_CANDIDATO)
+FROM CANDIDATO c, CARGO cc
+WHERE cc.CD_CARGO = 13
+AND c.CD_CARGO = cc.CD_CARGO
+GROUP BY c.SG_UF
+
+
+e) Quantas candidatas do gênero feminino estão concorrendo ao cargo de vereador por capital da região sudeste.  
+ SELECT c.NM_UE, COUNT(c.NM_CANDIDATO)
+FROM CANDIDATO c, CARGO cg
+WHERE cg.CD_CARGO = 13
+AND c.NM_UE ='BELO HORIZONTE' OR c.NM_UE ='SÃO PAULO' OR c.NM_UE = 'VITÓRIA' OR c.NM_UE = 'RIO DE JANEIRO'
+AND c.CD_GENERO = 4
+AND c.CD_CARGO = cg.CD_cARGO
+GROUP BY c.NM_UE
+
+
+f) Quantas coligações distintas existem nas eleições de 2024.  
+ 
+SELECT COUNT(DISTINCT cl.SQ_COLIGACAO)
+FROM COLIGACAO cl;
+
+
+g) Quantas candidatas do gênero feminino estão concorrendo ao cargo de vereador por partido político na cidade de 'UBERLÂNDIA'. Devem ser exibidos no resultado a sigla do partido e a quantidade.  
+ SELECT pd.SG_PARTIDO, COUNT(pd.SG_PARTIDO)
+FROM CANDIDATO c, CARGO cg, PARTIDO pd
+WHERE cg.CD_CARGO = 13
+AND c.NM_UE = 'UBERLÂNDIA'
+AND c.CD_GENERO = 4
+AND c.CD_CARGO = cg.CD_cARGO
+AND c.NR_PARTIDO = pd.NR_PARTIDO
+GROUP BY pd.SG_PARTIDO
+
+
+h) Quais são os partidos políticos que possuem mais do que 10 candidatos do gênero feminino na cidade de 'SÃO PAULO'. Devem ser exibidos no resultado a sigla do partido e a quantidade.  
+ SELECT pd.SG_PARTIDO, COUNT(pd.SG_PARTIDO)
+FROM CANDIDATO c, CARGO cg, PARTIDO pd
+WHERE c.CD_GENERO = 4
+AND c.NM_UE = 'SÃO PAULO'
+AND c.NR_PARTIDO = pd.NR_PARTIDO
+GROUP BY pd.SG_PARTIDO
+HAVING COUNT(*) > 10;
+
+
+i) Qual a quantidade de candidatos por partido e por cor/raça concorrendo nas eleições de 2024 na cidade de 'CUIABÁ'. Deve retornar a sigla do partido, a descrição cor/raça e a quantidade.  
+ 
+SELECT pd.SG_PARTIDO, COUNT(cr.DS_COR_RACA), cr.DS_COR_RACA
+FROM CANDIDATO c, CARGO cg, PARTIDO pd, COR_RACA cr
+WHERE c.NM_UE = 'CUIABÁ'
+AND c.NR_PARTIDO = pd.NR_PARTIDO
+AND c.CD_COR_RACA = cr.Cd_COR_RACA
+GROUP BY pd.sg_partido, cr.DS_COR_RACA
+
+
+j) Qual o partido político com a maior quantidade de candidatos na cidade de 'BELO HORIZONTE'. Devem ser exibidos no resultado o número do partido e a quantidade.  
+ SELECT pd.NR_PARTIDO, COUNT(c.SQ_CANDIDATO)
+FROM CANDIDATO c, PARTIDO pd
+WHERE c.NM_UE = 'BELO HORIZONTE'
+AND c.NR_PARTIDO = pd.NR_PARTIDO
+GROUP BY pd.NR_PARTIDO
+ORDER BY COUNT(c.SQ_CANDIDATO) DESC
+LIMIT 1
+
+
+k) Apresente o enunciado, o comando SQL, e o resultado da execução do comando para mais duas consultas que você julgue serem interessantes (devem ser diferentes das apresentadas na lista e devem envolver a junção de pelo menos 2 tabelas e group by ou aninhamento). 
+*Mostrar número de candidatos por partido e por estado.
+
+
+SELECT 
+    p.NM_PARTIDO, 
+    c.NR_PARTIDO, 
+    c.SG_UF, 
+    COUNT(c.SQ_CANDIDATO) AS NUM_CANDIDATOS
+FROM 
+    CANDIDATO c
+JOIN 
+    PARTIDO p ON c.NR_PARTIDO = p.NR_PARTIDO
+GROUP BY 
+    p.NM_PARTIDO, c.NR_PARTIDO, c.SG_UF
+ORDER BY 
+    c.SG_UF, NUM_CANDIDATOS DESC;
+
+
+—------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Exibir a quantidade total de candidatos por estado (UF) e cidade (NM_UE), ordenado pela quantidade de candidatos.
+
+
+SELECT 
+    c.SG_UF,
+    c.NM_UE,
+    COUNT(*) AS quantidade_candidatos
+FROM CANDIDATO c
+GROUP BY c.SG_UF, c.NM_UE
+ORDER BY quantidade_candidatos DESC;
