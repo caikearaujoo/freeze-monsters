@@ -53,7 +53,7 @@ public class Player extends Sprite {
         }
     }
 
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) { //ALTERACOES PARA A DIMENSÃO Y
 
         int key = e.getKeyCode();
 
@@ -65,6 +65,16 @@ public class Player extends Sprite {
         if (key == KeyEvent.VK_RIGHT) {
 
             dx = 0;
+        }
+
+        if (key == KeyEvent.VK_UP) {
+
+            dy = 0;
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+
+            dy = 0;
         }
     }
     private void resetState() {
