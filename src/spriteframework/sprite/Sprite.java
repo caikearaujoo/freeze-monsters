@@ -13,7 +13,7 @@ public class Sprite {
     protected int y;
     protected int imageWidth;
     protected int imageHeight;
-    protected int dx, dy;
+    protected int dx, dy; //adicionei dy para podermos ter o dy no freezemonster tambem
 
     public Sprite() {
 

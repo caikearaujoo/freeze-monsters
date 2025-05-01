@@ -15,4 +15,7 @@ public interface Commons extends spriteframework.Commons {
 
     // Adiciona uma constante para a velocidade base dos monstros
     int MONSTER_BASE_SPEED = 4;
+
+    int BORDER_TOP = 5;
+    int BORDER_BOTTOM = 5;
 }

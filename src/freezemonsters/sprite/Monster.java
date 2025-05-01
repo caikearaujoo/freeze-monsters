@@ -24,6 +24,13 @@ public class Monster extends BadnessBoxSprite{
         this.x = x;
         this.y = y;
 
+        dx = rand.nextInt(3) - 1; // Valores: -1, 0 ou 1
+        dy = rand.nextInt(3) - 1;
+
+        if (dx == 0 && dy == 0) { //Se ambos forem 0 no rand, garante que pelo menos vai andar pra alguma direção
+            dx = 1; // Movimento padrão para direita
+        }
+
         int monsterType = rand.nextInt(9) + 1;
 
         // Define os caminhos das imagens
@@ -53,18 +60,27 @@ public class Monster extends BadnessBoxSprite{
     }
 
     public void act() {
-
         x += dx;
-        y += dy;
+        y += dy; // Movimento no Y (EXCLUSIVO para o Freeze Monsters)
 
-        if (x <= 2) {
-
-            x = 2;
+        // Limites horizontais
+        if (x <= Commons.BORDER_LEFT) {
+            x = Commons.BORDER_LEFT;
+            dx = -dx; // Inverte direção (opcional)
+        }
+        else if (x + getImageWidth() > Commons.BOARD_WIDTH - Commons.BORDER_RIGHT) {
+            x = Commons.BOARD_WIDTH - Commons.BORDER_RIGHT - getImageWidth();
+            dx = -dx;
         }
 
-        if (x >= spriteframework.Commons.BOARD_WIDTH - 2 * width) {
-
-            x = spriteframework.Commons.BOARD_WIDTH - 2 * width;
+        // Limites verticais, tomando como base os limites horizontais que ja existiam
+        if (y <= Commons.BORDER_TOP) {
+            y = Commons.BORDER_TOP;
+            dy = -dy; // Inverte direção (opcional)
+        }
+        else if (y + getImageHeight() > Commons.BOARD_HEIGHT - Commons.BORDER_BOTTOM) {
+            y = Commons.BOARD_HEIGHT - Commons.BORDER_BOTTOM - getImageHeight();
+            dy = -dy;
         }
     }
 
