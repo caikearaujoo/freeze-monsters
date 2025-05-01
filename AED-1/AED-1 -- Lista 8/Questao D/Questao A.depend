@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1584205420 source:c:\users\temp.facom.005\desktop\caike\questao a\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1694639095 source:c:\users\temp.facom.005\desktop\caike\questao a\tadauxa.c
+	"encadeia.h"
+	<stdio.h>
+	<stdlib.h>
+
+1694638754 c:\users\temp.facom.005\desktop\caike\questao a\encadeia.h
+
+1584205420 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao a\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1694970205 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao a\tadauxa.c
+	"encadeia.h"
+	<stdio.h>
+	<stdlib.h>
+
+1694970086 c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao a\encadeia.h
+
+1694971565 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao d\tadauxa.c
+	"encadeia.h"
+	<stdio.h>
+	<stdlib.h>
+
+1694971622 c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao d\encadeia.h
+
+1694971749 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 8\questao d\main.c
+	"encadeia.h"
+	<stdio.h>
+	<stdlib.h>
+

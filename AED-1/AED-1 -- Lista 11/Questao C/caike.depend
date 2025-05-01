@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1584205420 source:c:\users\caikearaujo10\documents\caike\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1697053370 source:c:\users\caikearaujo10\documents\caike\listarecursiva.c
+	"listarecursiva.h"
+	<stdio.h>
+	<stdlib.h>
+
+1697053407 c:\users\caikearaujo10\documents\caike\listarecursiva.h
+
+1697395996 source:c:\users\caike\onedrive\Área de trabalho\caike\listarecursiva.c
+	"listarecursiva.h"
+	<stdio.h>
+	<stdlib.h>
+
+1697394437 c:\users\caike\onedrive\Área de trabalho\caike\listarecursiva.h
+
+1697396067 source:c:\users\caike\onedrive\Área de trabalho\caike\main.c
+	"listarecursiva.h"
+	<stdio.h>
+	<stdlib.h>
+

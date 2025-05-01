@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1584205420 source:c:\users\temp.facom.010\desktop\caike\questao a\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1696254660 source:c:\users\caike\onedrive\Área de trabalho\aed-1 -- lista 10\questao a\main.c
+	"listas.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1696256996 source:c:\users\caike\onedrive\Área de trabalho\aed-1 -- lista 10\questao a\tadaux.c
+	"listas.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1696223303 c:\users\caike\onedrive\Área de trabalho\aed-1 -- lista 10\questao a\listas.h
+

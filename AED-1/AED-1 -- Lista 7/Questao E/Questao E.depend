@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1694386915 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 7\questao e\main.c
+	"listas.h"
+	<stdio.h>
+	<stdlib.h>
+
+1694386804 source:c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 7\questao e\tadauxe.c
+	"listas.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1694386804 c:\users\caike\onedrive\Área de trabalho\programação\aed-1 -- lista 7\questao e\listas.h
+
