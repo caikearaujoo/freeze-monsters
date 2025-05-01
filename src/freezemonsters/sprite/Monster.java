@@ -11,6 +11,7 @@ import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.BadnessBoxSprite;
 
 public class Monster extends BadnessBoxSprite{
+
     private Gosma gosma;
     private ImageIcon congeladoImage;
     private Random rand = new Random();
@@ -91,5 +92,28 @@ public class Monster extends BadnessBoxSprite{
         return aGosma;
     }
 
+    public Random getRand() {
+        return rand;
+    }
+
+    public void setRand(Random rand) {
+        this.rand = rand;
+    }
+
+    public ImageIcon getCongeladoImage() {
+        return congeladoImage;
+    }
+
+    public void setCongeladoImage(ImageIcon congeladoImage) {
+        this.congeladoImage = congeladoImage;
+    }
+
+    public Gosma getGosma() {
+        return gosma;
+    }
+
+    public void setGosma(Gosma gosma) {
+        this.gosma = gosma;
+    }
 
 }

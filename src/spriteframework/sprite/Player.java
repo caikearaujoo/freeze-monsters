@@ -66,18 +66,8 @@ public class Player extends Sprite {
 
             dx = 0;
         }
-
-        if (key == KeyEvent.VK_UP) {
-
-            dy = 0;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-
-            dy = 0;
-        }
     }
-    private void resetState() {
+    protected void resetState() {
 
         setX(Commons.INIT_PLAYER_X);
         setY(Commons.INIT_PLAYER_Y);
