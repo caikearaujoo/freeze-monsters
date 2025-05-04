@@ -17,16 +17,19 @@ public class BomberSprite extends BadnessBoxSprite {
     }
 
     private void initBomber(int x, int y) {
-
         this.x = x;
         this.y = y;
 
-        bomb = new Bomb(x, y);
-
-        String alienImg = "images/alien.png";
-        ImageIcon ii = new ImageIcon(alienImg);
-
+        // Caminho corrigido considerando sua estrutura
+        java.net.URL imageUrl = getClass().getResource("/spaceinvaders/images/alien.png");
+        if (imageUrl == null) {
+            System.err.println("Erro: Imagem do alien não encontrada!");
+            return;
+        }
+        ImageIcon ii = new ImageIcon(imageUrl);
         setImage(ii.getImage());
+
+        bomb = new Bomb(x, y); // Inicializa a bomba
     }
 
 

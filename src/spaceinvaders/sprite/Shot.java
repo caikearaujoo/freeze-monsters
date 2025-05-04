@@ -8,6 +8,9 @@ import spriteframework.sprite.BadSprite;
 public class Shot extends BadSprite {
 
     public Shot() {
+        // Inicializa com valores padrão
+        this(0, 0);
+        this.die(); // Começa invisível
     }
 
     public Shot(int x, int y) {
@@ -17,7 +20,7 @@ public class Shot extends BadSprite {
 
     private void initShot(int x, int y) {
 
-        String shotImg = "images/shot.png";
+        String shotImg = "/spaceinvaders/images/shot.png";
         ImageIcon ii = new ImageIcon(shotImg);
         setImage(ii.getImage());
 

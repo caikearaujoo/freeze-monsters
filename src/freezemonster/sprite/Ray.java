@@ -16,7 +16,7 @@ public class Ray extends BadSprite {
     }
 
     private void initRay(int x, int y, int i) {
-        String rayImg = "/images/ray.png";
+        String rayImg = "/freezemonster/images/ray.png";
         ImageIcon ii = new ImageIcon(rayImg);
         Image rayImage = ii.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT);
         setImage(rayImage);

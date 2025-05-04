@@ -23,7 +23,7 @@ public class Gosma extends BadSprite {
         this.x = x;
         this.y = y;
 
-        String gosmaImg = "images/gosma.png";
+        String gosmaImg = "/freezemonster/images/gosma.png";
         ImageIcon ii = new ImageIcon(gosmaImg);
         Image gosmaImage = ii.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT); //redimensionamento da imagem
         setImage(gosmaImage);

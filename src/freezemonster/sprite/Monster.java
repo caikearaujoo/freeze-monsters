@@ -1,6 +1,6 @@
 package freezemonster.sprite;
 
-import freezemonsters.Commons;
+import freezemonster.Commons;
 import spaceinvaders.sprite.Bomb;
 import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.BadnessBoxSprite;
@@ -33,8 +33,8 @@ public class Monster extends BadnessBoxSprite {
 
         int monsterType = rand.nextInt(9) + 1;
         // Define os caminhos das imagens
-        String monsterPath = String.format("/images/monster%d.png", monsterType);
-        String congeladoPath = String.format("/images/monster%dbg.png", monsterType);
+        String monsterPath = String.format("/freezemonster/images/monster%d.png", monsterType);
+        String congeladoPath = String.format("/freezemonster/images/monster%dbg.png", monsterType);
 
         // Cria a gosma com direção aleatória
         this.gosma = new Gosma(x, y, rand.nextInt(4));

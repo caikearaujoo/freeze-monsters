@@ -28,7 +28,10 @@ public class SpaceInvadersBoard extends AbstractBoard{
     private String explImg = "images/explosion.png";
 
 
-
+    @Override
+    protected Player createPlayer() {
+        return new SpaceShipPlayer();  // retorna a implementação concreta
+    }
 
     protected void createBadSprites() {  // create sprites
         for (int i = 0; i < 4; i++) {
@@ -39,10 +42,14 @@ public class SpaceInvadersBoard extends AbstractBoard{
             }
         }
     }
-    
+
+    @Override
     protected void createOtherSprites() {
-        shot = new Shot();
+        // Inicializa o shot com posição padrão
+        this.shot = new Shot(0, 0);
+        this.shot.die(); // Começa invisível
     }
+
 
     private void drawShot(Graphics g) {
 

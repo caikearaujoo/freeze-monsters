@@ -20,9 +20,12 @@ public class Bomb extends BadSprite {
         this.x = x;
         this.y = y;
 
-        String bombImg = "images/bomb.png";
-        ImageIcon ii = new ImageIcon(bombImg);
-        setImage(ii.getImage());
+        // Carrega a imagem corretamente
+        java.net.URL imgUrl = getClass().getResource("/spaceinvaders/images/bomb.png");
+        if (imgUrl == null) {
+            throw new RuntimeException("Arquivo bomb.png não encontrado em spaceinvaders/images/");
+        }
+        setImage(new ImageIcon(imgUrl).getImage());
     }
 
     public void setDestroyed(boolean destroyed) {

@@ -9,29 +9,66 @@ import java.awt.event.KeyEvent;
 
 // alteração: classe abstrata, cada jogo define os próprios keyPressed e keyRelease, e act
 public abstract class Player extends Sprite {
-    private int width;
+    protected int width;
 
     // alteração: construtor recebe a imagem do player
-    public Player(String img) {
-        loadImage(img);
+    public Player() {
+        loadImage();
 		getImageDimensions();
 		resetState();
     }
+    //método abstrato
+    protected abstract void loadImage();
 
-    protected void loadImage (String img) {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(img));
-        width = ii.getImage().getWidth(null);
-        setImage(ii.getImage());
+    // template method para movimento (final para evitar sobrescrita descontrolada)
+    public final void act() {
+        moveX();  // Movimento em X (comum a todos)
+        moveY();  // Movimento em Y (implementação específica)
+        checkBounds();
     }
 
-    public abstract void act();
+    // lógica comum para X
+    private void moveX() {
+        x += dx;
+    }
 
-    public abstract void keyPressed(KeyEvent e);
+    // método hook para Y (subclasses implementam se necessário)
+    protected void moveY() {
+        // Default: não faz nada (para naves que só se movem em X)
+    }
 
-    public abstract void keyReleased(KeyEvent e);
+    // valida limites (comum a todos)
+    public final void checkBounds() {
+        checkBoundsX();
+        checkBoundsY();
+    }
 
-    private void resetState() {
+    private void checkBoundsX(){
+        if (x <= 2)
+            x = 2;
+        if (x >= Commons.BOARD_WIDTH - 2 * width)
+            x = Commons.BOARD_WIDTH - 2 * width;
+    }
 
+    //método hook para Y
+    protected void checkBoundsY(){
+    }
+
+    // controles (comuns)
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_LEFT)  dx = -2;
+        if (key == KeyEvent.VK_RIGHT) dx = 2;
+        // Teclas para Y são tratadas nas subclasses
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT)
+            dx = 0;
+    }
+
+    protected void resetState() {
         setX(Commons.INIT_PLAYER_X);
         setY(Commons.INIT_PLAYER_Y);
     }

@@ -85,14 +85,15 @@ public abstract class AbstractBoard extends JPanel {
     }
 
 
+
+    protected abstract Player createPlayer();  // método abstrato para criação de players
+    //IMPLEMENTAÇÃO DE UMA FÁBRICA ABSTRATA
     protected void createPlayers() {
-		players = new LinkedList<Player>();
-        players.add(createPlayer());
-	}
-	
-	protected Player createPlayer() {
-		return new Player();
-	}
+        players = new LinkedList<Player>();
+        players.add(createPlayer());  // delega a criação para as subclasses
+    }
+
+
 
    public Player getPlayer(int i) {
 	   if (i >=0 && i<players.size())
