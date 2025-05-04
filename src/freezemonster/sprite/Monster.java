@@ -16,7 +16,7 @@ public class Monster extends BadnessBoxSprite {
     private ImageIcon congeladoImage;
     private Random rand = new Random();
 
-    public Monster(int x, int y, String monstroImagem, String congeladoImagem) {
+    public Monster(int x, int y) {
         initMonster(x, y);
     }
 
@@ -38,7 +38,7 @@ public class Monster extends BadnessBoxSprite {
 
         // Cria a gosma com direção aleatória
         this.gosma = new Gosma(x, y, rand.nextInt(4));
-        
+
         // Carrega e redimensiona a imagem normal do monstro
         ImageIcon monsterIcon = new ImageIcon(getClass().getResource(monsterPath));
         Image monsterImage = monsterIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
