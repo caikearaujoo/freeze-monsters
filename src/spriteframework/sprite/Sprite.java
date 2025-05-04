@@ -13,7 +13,8 @@ public class Sprite {
     protected int y;
     protected int imageWidth;
     protected int imageHeight;
-    protected int dx, dy; //adicionei dy para podermos ter o dy no freezemonster tambem
+    protected int dx;
+    protected int dy; // atualização: dy para movimentação y
 
     public Sprite() {
 

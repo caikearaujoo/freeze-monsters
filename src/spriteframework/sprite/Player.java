@@ -7,67 +7,30 @@ import spriteframework.Commons;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 
-public class Player extends Sprite {
-
+// alteração: classe abstrata, cada jogo define os próprios keyPressed e keyRelease, e act
+public abstract class Player extends Sprite {
     private int width;
 
-    public Player() {
-        loadImage();
+    // alteração: construtor recebe a imagem do player
+    public Player(String img) {
+        loadImage(img);
 		getImageDimensions();
 		resetState();
     }
 
-    protected void loadImage () {
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/images/player.png"));
+    protected void loadImage (String img) {
+        ImageIcon ii = new ImageIcon(this.getClass().getResource(img));
         width = ii.getImage().getWidth(null);
         setImage(ii.getImage());
     }
-    
-    public void act() {
 
-        x += dx;
+    public abstract void act();
 
-        if (x <= 2) {
+    public abstract void keyPressed(KeyEvent e);
 
-            x = 2;
-        }
+    public abstract void keyReleased(KeyEvent e);
 
-        if (x >= Commons.BOARD_WIDTH - 2 * width) {
-
-            x = Commons.BOARD_WIDTH - 2 * width;
-        }
-    }
-
-    public void keyPressed(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-
-            dx = -2;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-
-            dx = 2;
-        }
-    }
-
-    public void keyReleased(KeyEvent e) { //ALTERACOES PARA A DIMENSÃO Y
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-
-            dx = 0;
-        }
-    }
-    protected void resetState() {
+    private void resetState() {
 
         setX(Commons.INIT_PLAYER_X);
         setY(Commons.INIT_PLAYER_Y);
