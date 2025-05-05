@@ -1,14 +1,10 @@
 package freezemonster;
 
-import freezemonster.sprite.Gosma;
-import freezemonster.sprite.Monster;
-import freezemonster.sprite.Ray;
-import freezemonster.sprite.Woody;
+import freezemonster.sprite.*;
 import spriteframework.AbstractBoard;
 import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.Player;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
@@ -39,7 +35,7 @@ public class FreezeMonsterBoard extends AbstractBoard {
 
     @Override
     protected void createOtherSprites() {
-        raio = new Ray(0, 0, 0); // dx=0 para movimento vertical
+        raio = new Ray(0, 0, 0); // dx = 0 para movimento vertical
         raio.die();
     }
 

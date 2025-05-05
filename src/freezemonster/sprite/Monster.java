@@ -1,7 +1,6 @@
 package freezemonster.sprite;
 
 import freezemonster.Commons;
-import spaceinvaders.sprite.Bomb;
 import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.BadnessBoxSprite;
 
@@ -11,9 +10,8 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class Monster extends BadnessBoxSprite {
-    // parte desenvolvida anteriormente
     private Gosma gosma;
-    private ImageIcon congeladoImage;
+    private ImageIcon congeladoImg;
     private Random rand = new Random();
 
     public Monster(int x, int y) {
@@ -24,21 +22,28 @@ public class Monster extends BadnessBoxSprite {
         this.x = x;
         this.y = y;
 
-        dx = rand.nextInt(2) - 1; // Valores: -1, 0 ou 1 (antes era -1 a 1)
-        dy = rand.nextInt(2) - 1; // Valores: -1, 0 ou 1
+        dx = rand.nextInt(2) - 1; // valores: -1, 0 ou 1 (antes: -1 a 1)
+        dy = rand.nextInt(2) - 1; // valores: -1, 0 ou 1
 
-        if (dx == 0 && dy == 0) { //Se ambos forem 0 no rand, garante que pelo menos vai andar pra alguma direção
-            dx = 1; // Movimento padrão para direita
+        if (dx == 0 && dy == 0) {
+            // se ambos forem 0 no rand, garante que pelo menos vai andar para direita
+            dx = 1;
         }
 
         int monsterType = rand.nextInt(9) + 1;
-        // Define os caminhos das imagens
         String monsterPath = String.format("/freezemonster/images/monster%d.png", monsterType);
         String congeladoPath = String.format("/freezemonster/images/monster%dbg.png", monsterType);
 
-        // Cria a gosma com direção aleatória
-        this.gosma = new Gosma(x, y, rand.nextInt(4));
+        ImageIcon monsterImg = new ImageIcon(this.getClass().getResource(monsterPath));
+        monsterImg.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        setImage(monsterImg.getImage());
 
+        congeladoImg = new ImageIcon(this.getClass().getResource(congeladoPath));
+        congeladoImg.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+
+        this.gosma = new Gosma(x, y, rand.nextInt(4));  // gosma com direção aleatória
+
+        /* APAGAR DEPOIS
         // Carrega e redimensiona a imagem normal do monstro
         ImageIcon monsterIcon = new ImageIcon(getClass().getResource(monsterPath));
         Image monsterImage = monsterIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -47,11 +52,11 @@ public class Monster extends BadnessBoxSprite {
         // Carrega e redimensiona a imagem congelada
         ImageIcon congeladoIcon = new ImageIcon(getClass().getResource(congeladoPath));
         Image congeladoImg = congeladoIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        this.congeladoImage = new ImageIcon(congeladoImg);
+        this.congeladoImage = new ImageIcon(congeladoImg); */
     }
 
     public void die() {
-        setImage(congeladoImage.getImage());
+        setImage(congeladoImg.getImage());
         gosma.die();
         setDying(true);
         dx = 0;
@@ -60,21 +65,21 @@ public class Monster extends BadnessBoxSprite {
 
     public void act() {
         x += dx;
-        y += dy; // Movimento no Y (EXCLUSIVO para o Freeze Monsters)
+        y += dy;
 
-        // Limites horizontais
+        // limites horizontais
         if (x <= Commons.BORDER_LEFT) {
             x = Commons.BORDER_LEFT;
-            dx = -dx; // Inverte direção (opcional)
+            dx = -dx;
         } else if (x + getImageWidth() > Commons.BOARD_WIDTH - Commons.BORDER_RIGHT) {
             x = Commons.BOARD_WIDTH - Commons.BORDER_RIGHT - getImageWidth();
             dx = -dx;
         }
 
-        // Limites verticais, tomando como base os limites horizontais que ja existiam
+        // limites verticais
         if (y <= Commons.BORDER_TOP) {
             y = Commons.BORDER_TOP;
-            dy = -dy; // Inverte direção (opcional)
+            dy = -dy;
         } else if (y + getImageHeight() > Commons.BOARD_HEIGHT - Commons.BORDER_BOTTOM) {
             y = Commons.BOARD_HEIGHT - Commons.BORDER_BOTTOM - getImageHeight();
             dy = -dy;
@@ -97,11 +102,11 @@ public class Monster extends BadnessBoxSprite {
     }
 
     public ImageIcon getCongeladoImage() {
-        return congeladoImage;
+        return congeladoImg;
     }
 
-    public void setCongeladoImage(ImageIcon congeladoImage) {
-        this.congeladoImage = congeladoImage;
+    public void setCongeladoImg(ImageIcon congeladoImg) {
+        this.congeladoImg = congeladoImg;
     }
 
     public Gosma getGosma() {
