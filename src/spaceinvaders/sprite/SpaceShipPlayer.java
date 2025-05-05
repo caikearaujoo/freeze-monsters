@@ -1,10 +1,10 @@
 package spaceinvaders.sprite;
 
-import spriteframework.Commons;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import spaceinvaders.Commons;
 
 // alteração: nova classe player, com implementação própria para space invaders
 public class SpaceShipPlayer extends spriteframework.sprite.Player {
@@ -13,6 +13,12 @@ public class SpaceShipPlayer extends spriteframework.sprite.Player {
         loadImage();  // carrega a imagem específica do Woody
         getImageDimensions();  // obtém as dimensões da imagem
         resetState();  // define a posição inicial (herdado de Player)
+    }
+
+    public void checkBoundsX(){
+        super.checkBoundsX();
+        if (x >= Commons.BOARD_WIDTH - 2 * width)
+            x = Commons.BOARD_WIDTH - 2 * width;
     }
 
     protected void loadImage() {
@@ -69,7 +75,10 @@ public class SpaceShipPlayer extends spriteframework.sprite.Player {
 
     @Override
     protected void resetState() {
+        setX(Commons.BOARD_WIDTH / 2);
+        setY(Commons.BOARD_HEIGHT - 100);
         setX(Commons.INIT_PLAYER_X);
         setY(Commons.INIT_PLAYER_Y);
+
     }
 }

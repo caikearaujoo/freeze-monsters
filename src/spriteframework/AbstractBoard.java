@@ -6,6 +6,7 @@ import javax.swing.Timer;
 
 import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.Player;
+import freezemonster.Commons;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -148,7 +149,7 @@ public abstract class AbstractBoard extends JPanel {
         doDrawing(g);
     }
 
-    private void doDrawing(Graphics g1) { // Template Method
+    public void doDrawing(Graphics g1) { // Template Method
         Graphics2D g = (Graphics2D) g1;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
@@ -157,46 +158,50 @@ public abstract class AbstractBoard extends JPanel {
                 RenderingHints.VALUE_RENDER_QUALITY);
         g.setColor(Color.black);
         g.fillRect(0, 0, d.width, d.height);
-        g.setColor(Color.green);
+
+        // Linhas removidas aqui //
 
         if (inGame) {
-
-            g.drawLine(0, Commons.GROUND,
-                    Commons.BOARD_WIDTH, Commons.GROUND);
-
             drawBadSprites(g);
             drawPlayers(g);
             drawOtherSprites(g);
-
         } else {
-
             if (timer.isRunning()) {
                 timer.stop();
             }
-
             gameOver(g);
         }
-
         Toolkit.getDefaultToolkit().sync();
     }
 
     private void gameOver(Graphics g) {
-
-        g.setColor(Color.black);
+        // Fundo semi-transparente
+        g.setColor(new Color(0, 0, 0, 200)); // Preto com transparência
         g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
 
+        // Caixa de mensagem
         g.setColor(new Color(0, 32, 48));
-        g.fillRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
-        g.setColor(Color.white);
-        g.drawRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
+        int boxHeight = 100;
+        g.fillRect(50, Commons.BOARD_HEIGHT / 2 - boxHeight/2,
+                Commons.BOARD_WIDTH - 100, boxHeight);
 
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fontMetrics = this.getFontMetrics(small);
+        // Borda
+        g.setColor(Color.white);
+        g.drawRect(50, Commons.BOARD_HEIGHT / 2 - boxHeight/2,
+                Commons.BOARD_WIDTH - 100, boxHeight);
+
+        // Texto
+        Font font = new Font("Helvetica", Font.BOLD, 24);
+        FontMetrics fm = g.getFontMetrics(font);
 
         g.setColor(Color.white);
-        g.setFont(small);
-        g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2,
-                Commons.BOARD_WIDTH / 2);
+        g.setFont(font);
+
+        // Centraliza o texto
+        int textX = (Commons.BOARD_WIDTH - fm.stringWidth(message)) / 2;
+        int textY = Commons.BOARD_HEIGHT / 2 + fm.getAscent()/2;
+
+        g.drawString(message, textX, textY);
     }
 
 

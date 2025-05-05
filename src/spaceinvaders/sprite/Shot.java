@@ -20,9 +20,11 @@ public class Shot extends BadSprite {
 
     private void initShot(int x, int y) {
 
-        String shotImg = "/spaceinvaders/images/shot.png";
-        ImageIcon ii = new ImageIcon(shotImg);
-        setImage(ii.getImage());
+        // String shotImg = getClass().getResource("/spaceinvaders/images/shot.png");
+        //java.net.URL shotImg = getClass().getResource("/spaceinvaders/images/shot.png");
+        //ImageIcon ii = new ImageIcon(shotImg);
+        ImageIcon shotImg = new ImageIcon(this.getClass().getResource("/spaceinvaders/images/shot.png"));
+        setImage(shotImg.getImage());
 
         int H_SPACE = 6;
         setX(x + H_SPACE);

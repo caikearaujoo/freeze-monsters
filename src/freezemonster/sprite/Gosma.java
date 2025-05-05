@@ -1,35 +1,52 @@
 package freezemonster.sprite;
 
-import spriteframework.Commons;
+import freezemonster.Commons;
 import spriteframework.sprite.BadSprite;
 
 import javax.swing.ImageIcon;
 import java.awt.*;
+import java.util.Random;
 
 public class Gosma extends BadSprite {
+    private final Random random;
     // parte desenvolvida anteriormente
     private boolean destroyed;
 
-    public Gosma(int x, int y, int i) {
-        initGosma(x, y, i);
+    public Gosma(int x, int y){
+        this.random = new Random();
+        initGosma(x, y);
     }
 
-    private void initGosma(int x, int y, int i) {
-        /* 
-        A gosma é criada inicialmente como "destruída" (destroyed = true). 
+    private void initGosma(int x, int y) {
+        /*
+        A gosma é criada inicialmente como "destruída" (destroyed = true).
         Quando o monstro decide atirar, ele "reativa" a gosma com setDestroyed(false)
         */
-        setDestroyed(true); 
+        setDestroyed(true);
         this.x = x;
         this.y = y;
 
-        String gosmaImg = "/freezemonster/images/gosma.png";
-        ImageIcon ii = new ImageIcon(gosmaImg);
-        Image gosmaImage = ii.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT); //redimensionamento da imagem
-        setImage(gosmaImage);
+        // Direção horizontal aleatória (-1, 0 ou 1)
+        this.dx = random.nextInt(3) - 1;
 
-        this.dx = i; //define o dx dela como o aleatorio gerado no Monster
+        // Direção vertical aleatória (-1, 0 ou 1)
+        this.dy = random.nextInt(3) - 1;
+
+        // Garante que pelo menos um eixo tenha movimento
+        if (dx == 0 && dy == 0) {
+            dy = 1; // Movimento padrão para baixo se ambos forem 0
+        }
+
+        ImageIcon ii = new ImageIcon(getClass().getResource("/freezemonster/images/gosma.png"));
+        Image scaledImage = ii.getImage().getScaledInstance(
+                Commons.GOSMA_WIDTH,
+                Commons.GOSMA_HEIGHT,
+                Image.SCALE_SMOOTH
+        );
+        setImage(scaledImage);
     }
+
+
 
     public void act() {
         if (!destroyed) {
@@ -50,5 +67,11 @@ public class Gosma extends BadSprite {
 
     public boolean isDestroyed() {
         return destroyed;
+    }
+
+    public void setDx(int i) {
+    }
+
+    public void setDy(int i) {
     }
 }

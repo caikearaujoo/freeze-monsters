@@ -3,6 +3,9 @@ package spaceinvaders;
 
 public interface Commons extends spriteframework.Commons{
 
+    int BOARD_WIDTH = 300;
+    int BOARD_HEIGHT = 400;
+
     int BOMB_HEIGHT = 5;
 
     int ALIEN_HEIGHT = 12;
@@ -15,4 +18,5 @@ public interface Commons extends spriteframework.Commons{
     int CHANCE = 5;
     int PLAYER_WIDTH = 15;
     int PLAYER_HEIGHT = 10;
+    int NUMBER_OF_MONSTERS_TO_DESTROY = 10;
 }

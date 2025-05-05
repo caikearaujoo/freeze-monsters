@@ -37,16 +37,16 @@ public class Monster extends BadnessBoxSprite {
         String congeladoPath = String.format("/freezemonster/images/monster%dbg.png", monsterType);
 
         // Cria a gosma com direção aleatória
-        this.gosma = new Gosma(x, y, rand.nextInt(4));
+        this.gosma = new Gosma(x, y);
 
         // Carrega e redimensiona a imagem normal do monstro
         ImageIcon monsterIcon = new ImageIcon(getClass().getResource(monsterPath));
-        Image monsterImage = monsterIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        Image monsterImage = monsterIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         setImage(monsterImage);
 
         // Carrega e redimensiona a imagem congelada
         ImageIcon congeladoIcon = new ImageIcon(getClass().getResource(congeladoPath));
-        Image congeladoImg = congeladoIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        Image congeladoImg = congeladoIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         this.congeladoImage = new ImageIcon(congeladoImg);
     }
 
@@ -87,6 +87,7 @@ public class Monster extends BadnessBoxSprite {
         aGosma.add(gosma);
         return aGosma;
     }
+
 
     public Random getRand() {
         return rand;

@@ -1,7 +1,7 @@
 package spaceinvaders;
 
 
-import java.awt.Graphics;
+import java.awt.*;
 
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
@@ -25,12 +25,33 @@ public class SpaceInvadersBoard extends AbstractBoard{
     private int deaths = 0;
 
 
-    private String explImg = "images/explosion.png";
+    private String explImg = "spaceinvaders/images/explosion.png";
 
 
     @Override
     protected Player createPlayer() {
         return new SpaceShipPlayer();  // retorna a implementação concreta
+    }
+
+    public void doDrawing(Graphics g1) {
+        super.doDrawing(g1); // Chama o desenho básico do AbstractBoard
+        g1.setColor(Color.green);
+        g1.drawLine(0, Commons.GROUND,
+                Commons.BOARD_WIDTH, Commons.GROUND);
+
+        // Adiciona mensagem personalizada
+        if (!inGame) {
+            Font font = new Font("Arial", Font.BOLD, 36);
+            g1.setFont(font);
+
+            FontMetrics fm = g1.getFontMetrics();
+            int textWidth = fm.stringWidth(message);
+
+            g1.setColor(Color.WHITE);
+            g1.drawString(message,
+                    (Commons.BOARD_WIDTH - textWidth) / 2,
+                    Commons.BOARD_HEIGHT / 2);
+        }
     }
 
     protected void createBadSprites() {  // create sprites
@@ -101,8 +122,12 @@ public class SpaceInvadersBoard extends AbstractBoard{
 //                Commons.BOARD_WIDTH / 2);
 //    }
 
-    protected void update() {
+    public void printaMortes(){
+        System.out.println("Naves mortas : " + deaths);
+    }
 
+    protected void update() {
+        printaMortes();
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
 
             inGame = false;

@@ -1,6 +1,7 @@
 package spriteframework;
 
 import javax.swing.JFrame;
+import spaceinvaders.Commons;
 
 public abstract class MainFrame extends JFrame  {
 

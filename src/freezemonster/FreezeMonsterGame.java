@@ -9,8 +9,8 @@ public class FreezeMonsterGame extends MainFrame {
 
     public FreezeMonsterGame() {
         super("Freeze Monster");
-        setSize(800, 600); // Novo tamanho (largura x altura)
-        setPreferredSize(new Dimension(800, 600));
+        setSize(100, 900); // Novo tamanho (largura x altura)
+        setPreferredSize(new Dimension(1000, 900));
         setLocationRelativeTo(null); // Centraliza a janela
         pack();
     }
