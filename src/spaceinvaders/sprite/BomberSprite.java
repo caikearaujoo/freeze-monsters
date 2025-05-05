@@ -1,18 +1,15 @@
 package spaceinvaders.sprite;
 
-import java.util.LinkedList;
-
-import javax.swing.ImageIcon;
-
 import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.BadnessBoxSprite;
 
-public class BomberSprite extends BadnessBoxSprite {
+import java.util.LinkedList;
+import javax.swing.ImageIcon;
 
+public class BomberSprite extends BadnessBoxSprite {
     private Bomb bomb;
 
     public BomberSprite(int x, int y) {
-
         initBomber(x, y);
     }
 
@@ -20,25 +17,24 @@ public class BomberSprite extends BadnessBoxSprite {
         this.x = x;
         this.y = y;
 
-        // Caminho corrigido considerando sua estrutura
+        /* APAGAR DEPOIS
         java.net.URL imageUrl = getClass().getResource("/spaceinvaders/images/alien.png");
         if (imageUrl == null) {
             System.err.println("Erro: Imagem do alien não encontrada!");
             return;
         }
         ImageIcon ii = new ImageIcon(imageUrl);
-        setImage(ii.getImage());
+        setImage(ii.getImage()); */
 
-        bomb = new Bomb(x, y); // Inicializa a bomba
+        ImageIcon alienImg = new ImageIcon(this.getClass().getResource("/spaceinvaders/images/alien.png"));
+        setImage(alienImg.getImage());
+
+        bomb = new Bomb(x, y);
     }
-
-
 
     public Bomb getBomb() {
-
         return bomb;
     }
-
 
 	@Override
 	public LinkedList<BadSprite> getBadnesses() {
