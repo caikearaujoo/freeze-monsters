@@ -57,4 +57,9 @@ public class Woody extends Player {
         if (key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN)
             dy = 0;
     }
+
+    protected void resetState() {
+        setX(Commons.BOARD_WIDTH / 2); // Centralizado horizontalmente
+        setY(Commons.BOARD_HEIGHT - 100); // Perto da parte inferior
+    }
 }

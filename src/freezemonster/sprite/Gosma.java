@@ -34,7 +34,7 @@ public class Gosma extends BadSprite {
     public void act() {
         if (!destroyed) {
             // Movimento baseado na direção inicial (dx)
-            x += dx * 2; // Velocidade multiplicada por 2 (ajustável)
+            x += dx * 1; // Velocidade multiplicada por 2 (ajustável)
             y += dy;      // Caso queira movimento diagonal posteriormente
             // Verifica se saiu dos limites da tela
             if (x <= 0 || x >= Commons.BOARD_WIDTH ||

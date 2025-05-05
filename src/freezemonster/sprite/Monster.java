@@ -24,8 +24,8 @@ public class Monster extends BadnessBoxSprite {
         this.x = x;
         this.y = y;
 
-        dx = rand.nextInt(3) - 1; // Valores: -1, 0 ou 1
-        dy = rand.nextInt(3) - 1;
+        dx = rand.nextInt(2) - 1; // Valores: -1, 0 ou 1 (antes era -1 a 1)
+        dy = rand.nextInt(2) - 1; // Valores: -1, 0 ou 1
 
         if (dx == 0 && dy == 0) { //Se ambos forem 0 no rand, garante que pelo menos vai andar pra alguma direção
             dx = 1; // Movimento padrão para direita
