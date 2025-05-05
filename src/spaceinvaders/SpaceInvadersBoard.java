@@ -122,12 +122,8 @@ public class SpaceInvadersBoard extends AbstractBoard{
 //                Commons.BOARD_WIDTH / 2);
 //    }
 
-    public void printaMortes(){
-        System.out.println("Naves mortas : " + deaths);
-    }
 
     protected void update() {
-        printaMortes();
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
 
             inGame = false;
