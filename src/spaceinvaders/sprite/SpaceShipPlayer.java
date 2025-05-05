@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 // ALTERAÇÃO: nova classe player, com implementação própria para space invaders
 public class SpaceShipPlayer extends Player {
     public SpaceShipPlayer() {
-        //super();                    // chama o construtor da classe Player
+        //super();                  // chama o construtor da classe Player
         loadImage();                // carrega a imagem específica do Woody
         getImageDimensions();       // obtém as dimensões da imagem
         resetState();               // define a posição inicial (herdado de Player)
