@@ -61,6 +61,11 @@ public class Gosma extends BadSprite {
         }
     }
 
+    public void die() {
+        setDestroyed(true);
+        setVisible(false);
+    }
+
     public void setDestroyed(boolean destroyed) {
         this.destroyed = destroyed;
     }

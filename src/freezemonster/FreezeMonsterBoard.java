@@ -161,6 +161,11 @@ public class FreezeMonsterBoard extends AbstractBoard {
                 raio.markAsHit(); // Marca como "já acertou"
 
                 break;
+            } else if (monster.isVisible() && !monster.getGosma().isDestroyed() && raio.getRect().intersects(monster.getGosma().getRect())) {
+                raio.die();
+                raio.markAsHit();
+                monster.getGosma().die();
+                break;
             }
         }
     }
