@@ -9,7 +9,6 @@ import java.util.Random;
 
 public class Gosma extends BadSprite {
     private final Random random;
-    // parte desenvolvida anteriormente
     private boolean destroyed;
 
     public Gosma(int x, int y){
@@ -18,10 +17,6 @@ public class Gosma extends BadSprite {
     }
 
     private void initGosma(int x, int y) {
-        /*
-        A gosma é criada inicialmente como "destruída" (destroyed = true).
-        Quando o monstro decide atirar, ele "reativa" a gosma com setDestroyed(false)
-        */
         setDestroyed(true);
         this.x = x;
         this.y = y;
@@ -34,20 +29,23 @@ public class Gosma extends BadSprite {
 
         // Garante que pelo menos um eixo tenha movimento
         if (dx == 0 && dy == 0) {
-            dy = 1; // Movimento padrão para baixo se ambos forem 0
+            dy = 1;
         }
 
-        ImageIcon ii = new ImageIcon(getClass().getResource("/freezemonster/images/gosma.png"));
+        /*ImageIcon ii = new ImageIcon(getClass().getResource("/freezemonster/images/gosma.png"));
         Image scaledImage = ii.getImage().getScaledInstance(
                 Commons.GOSMA_WIDTH,
                 Commons.GOSMA_HEIGHT,
                 Image.SCALE_SMOOTH
         );
-        setImage(scaledImage);
+        setImage(scaledImage);*/
+
+        ImageIcon img = new ImageIcon(this.getClass().getResource("/freezemonster/images/gosma.png"));
+        Image gosmaImg = img.getImage().getScaledInstance(Commons.GOSMA_WIDTH, Commons.GOSMA_HEIGHT, Image.SCALE_SMOOTH);
+        setImage(gosmaImg);
     }
 
-
-
+    @Override
     public void act() {
         if (!destroyed) {
             // Movimento baseado na direção inicial (dx)
@@ -61,6 +59,7 @@ public class Gosma extends BadSprite {
         }
     }
 
+    @Override
     public void die() {
         setDestroyed(true);
         setVisible(false);
@@ -70,6 +69,7 @@ public class Gosma extends BadSprite {
         this.destroyed = destroyed;
     }
 
+    @Override
     public boolean isDestroyed() {
         return destroyed;
     }

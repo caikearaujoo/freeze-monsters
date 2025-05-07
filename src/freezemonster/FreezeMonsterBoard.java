@@ -2,14 +2,12 @@ package freezemonster;
 
 import freezemonster.sprite.Gosma;
 import freezemonster.sprite.Monster;
-import freezemonster.Commons;
 import freezemonster.sprite.Ray;
 import freezemonster.sprite.Woody;
 import spriteframework.AbstractBoard;
 import spriteframework.sprite.BadSprite;
 import spriteframework.sprite.Player;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
@@ -27,17 +25,15 @@ public class FreezeMonsterBoard extends AbstractBoard {
 
     @Override
     protected void createBadSprites() {
-        int numMonstros = 10;
         badSprites = new LinkedList<>();
         random = new Random();
 
-        for (int i = 0; i < numMonstros; i++) {
+        for (int i = 0; i < Commons.NUMBER_OF_MONSTERS_TO_DESTROY; i++) {
             int x = random.nextInt(Commons.BOARD_WIDTH - 100) + 50;
             int y = random.nextInt(Commons.BOARD_HEIGHT / 2) + 20;
             badSprites.add(new Monster(x, y));
         }
     }
-
 
     @Override
     protected void createOtherSprites() {
@@ -102,8 +98,6 @@ public class FreezeMonsterBoard extends AbstractBoard {
                 updateGosma(monster);
             }
         }
-
-
     }
 
     private void tryToShootGosma(Monster monster) {
@@ -152,16 +146,16 @@ public class FreezeMonsterBoard extends AbstractBoard {
         for (BadSprite bad : badSprites) {
             Monster monster = (Monster) bad;
 
-            if (monster.isVisible() && !monster.isDying() &&
-                    raio.getRect().intersects(monster.getRect())) {
-
+            // colisão raio com monstro
+            if (monster.isVisible() && !monster.isDying() && raio.getRect().intersects(monster.getRect())) {
                 monster.die();
                 deaths++;
                 raio.die();
-                raio.markAsHit(); // Marca como "já acertou"
-
+                raio.markAsHit();
                 break;
-            } else if (monster.isVisible() && !monster.getGosma().isDestroyed() && raio.getRect().intersects(monster.getGosma().getRect())) {
+            }
+            // colisão raio com gosma
+            else if (monster.isVisible() && !monster.getGosma().isDestroyed() && raio.getRect().intersects(monster.getGosma().getRect())) {
                 raio.die();
                 raio.markAsHit();
                 monster.getGosma().die();
@@ -182,18 +176,18 @@ public class FreezeMonsterBoard extends AbstractBoard {
             // Só dispara se não houver raio ativo
             if (raio == null || raio.isDying() || raio.isDestroyed()) {
                 Woody woody = (Woody) player;
-                int direction = woody.getDirecao_woody(); // Precisamos adicionar esse getter na classe Woody
+                int direction = woody.getDirecaoWoody();
 
                 raio = new Ray(
                         player.getX() + player.getImageWidth()/2 - Commons.RAY_WIDTH/2,
                         player.getY(),
                         direction
                 );
+
                 raio.setDying(false);
             }
         }
     }
-
 
     private void drawGosmas(Graphics g) {
         for (BadSprite bad : badSprites) {
