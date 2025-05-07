@@ -87,8 +87,9 @@ public abstract class AbstractBoard extends JPanel {
 
 
 
-    protected abstract Player createPlayer();  // método abstrato para criação de players
-    //IMPLEMENTAÇÃO DE UMA FÁBRICA ABSTRATA
+    protected abstract Player createPlayer();
+
+    // fábrica abstrata
     protected void createPlayers() {
         players = new LinkedList<Player>();
         players.add(createPlayer());  // delega a criação para as subclasses
@@ -159,7 +160,6 @@ public abstract class AbstractBoard extends JPanel {
         g.setColor(Color.black);
         g.fillRect(0, 0, d.width, d.height);
 
-        // Linhas removidas aqui //
 
         if (inGame) {
             drawBadSprites(g);

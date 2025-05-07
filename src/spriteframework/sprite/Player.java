@@ -6,27 +6,25 @@ import spriteframework.Commons;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 
-// alteração: classe abstrata, cada jogo define os próprios keyPressed e keyRelease, e act
+// classe abstrata
 public abstract class Player extends Sprite {
     protected int width;
 
-    // alteração: construtor recebe a imagem do player
     public Player() {
         loadImage();
 		getImageDimensions();
 		resetState();
     }
-    //método abstrato
+
     protected abstract void loadImage();
 
-    // template method para movimento (final para evitar sobrescrita descontrolada)
+    // template method para movimento
     public final void act() {
         moveX();  // Movimento em X (comum a todos)
         moveY();  // Movimento em Y (implementação específica)
         checkBounds();
     }
 
-    // lógica comum para X
     private void moveX() {
         x += dx;
     }
@@ -36,7 +34,6 @@ public abstract class Player extends Sprite {
         // Default: não faz nada (para naves que só se movem em X)
     }
 
-    // valida limites (comum a todos)
     public final void checkBounds() {
         checkBoundsX();
         checkBoundsY();
@@ -51,7 +48,6 @@ public abstract class Player extends Sprite {
     protected void checkBoundsY(){
     }
 
-    // controles (comuns)
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT)  dx = -2;
@@ -63,9 +59,10 @@ public abstract class Player extends Sprite {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT)
             dx = 0;
+        // Teclas para Y são tratadas nas subclasses
     }
 
     protected void resetState() {
-        setVisible(true);  // Garante visibilidade ao resetar
+        setVisible(true);
     }
 }
